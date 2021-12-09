@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>personal Details</title>
+</head>
+<body>
+	<h1 align="center">PERSONAL DETAILS</h1>
+	
+	<div style="margin-left: 500px;">
+	<p style="float: left; padding-right: 20px;" align="center">NAME &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; :</p><input type="text" id="username" name="name" style="margin-top: 15px;" required=""><br><br>
+	<p align="center" style="float: left; padding-right:20px;">DOB  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;   :</p><input type="text" placeholder="MM-DD-YY" name="dob" id="dob" style="margin-top: 15px; padding-right: 05px;" required=""><br><br>
+	<p align="center" style="float:left; padding-right:20px;">SEX &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;  :</p>
+	<select name="sex" id="sex" style="margin-top: 15px; padding-right: 113px;" required="">
+		<option value="0"></option>
+		<option value="1">male</option>
+		<option value="2">female</option>
+	</select><br><br>
+	<p align="center" style="float: left; padding-right: 20px;">MOBILE NUMBER:</p><input type="Number" name="mbl" id="mobilenum" style="margin-top: 15px;"><br><br>
+    <br><br>
+    <input type="submit" name="submitbtn" value="submit" onclick="checkName()" style="margin-left: 110px;"><input type="submit" name="resetbtn" onclick="reset()" value="reset" style="margin-left: 20px;">
+</div><br><br><br>
+<div style="margin-left:550px;">
+   <span id="name1"></span><br><br>
+   <span id="dob1"></span><br><br>
+   <span id="sex1"></span><br><br>
+   <span id="mobile1"></span><br><br>
+</div>
+ <script type="text/javascript">
+  
+ var num,sex,dob,name;
+
+ 	function checkName(){
+ 		name = document.getElementById('username').value;
+ 		if(name == ""){
+ 			alert('Name field is required');
+ 			document.getElementById("username").focus();
+ 			return;
+ 		}
+ 		else{
+ 			for(var i=0;i<name.length;i++){
+ 				if(name[i]=='$' || name[i] == '!'|| name[i] == '@' || name[i] == '#' || name[i] == '%' || name[i] == '^' || name[i] == '&' || name[i] == '*'|| name[i] == '(' || name[i] == ')'  ){
+ 					alert('please, Do not enter special characters in your name field');
+ 					document.getElementById("username").focus();
+ 					return;
+ 				}
+ 				else if(name[i]>='0' && name[i] <='9'){
+ 					alert('please do not Enter numbers in your name field');
+ 					document.getElementById("username").focus();
+ 					return;
+ 				}else{}
+ 			}
+
+ 		}
+ 		dobCheck();
+
+ 	}
+
+ 	function dobCheck(){
+ 		  dob = document.getElementById('dob').value;
+ 		 // alert(dob.substring(0,2));
+         if(dob ==""){
+         	alert('dob field is required');
+         	document.getElementById("dob").focus();
+         	return;
+         }
+ 		 if(dob.length != 8){
+ 		 	alert('Enter the date in the valid format');
+ 		 	 document.getElementById("dob").focus();
+ 		 	 return;
+ 		 }
+ 		 var month = parseInt(dob.substring(0,2));
+ 		 if(!(month>=1&&month<=12)){
+            alert('please Enter a valid month');
+            document.getElementById("dob").focus();
+            return;
+ 		 }
+ 		 var date = parseInt(dob.substring(3,5));
+
+ 		 if(!(date>=1&&date<=31 && (month==1||3||5||7||8||10||12))){
+               alert('Enter the valid date');
+               document.getElementById("dob").focus();
+               return;
+ 		 }
+
+ 		 if(!(date>=1&&date<=30 && (month==4||6||9||11))){
+               alert('Enter the valid date');
+               document.getElementById("dob").focus();
+               return;
+ 		 }
+        
+         if(date > 28 && month==2 ){
+         	alert('enter the valid date');
+            document.getElementById("dob").focus();
+            return;
+         }
+        
+        var year = dob.substring(6,8);
+
+        if(year.length != 2){
+        	alert('Enter the valid year');
+        	document.getElementById("dob").focus();
+        	return;
+        }
+
+        sexCheck();
+
+ 	}
+
+ 	function sexCheck(){
+          sex = document.getElementById('sex').value;
+
+         if(sex ==0){
+         	alert('The sex field is required');
+         	document.getElementById("sex").focus();
+         	return;
+         }
+      phoneNumberCheck();
+ 	}
+
+ 	function phoneNumberCheck(){
+ 		 num = document.getElementById('mobilenum').value;
+       if(num.length ==0){
+             num ="Not entered";
+       }
+ 		else if(num.length != 10){
+ 			alert('enter 10 digit number only');
+ 			document.getElementById("mobilenum").focus();
+ 			return;
+ 		}else{}
+
+ 		printDetails();
+ 	}
+
+ 	function printDetails(){
+ 		document.getElementById('name1').innerHTML=`NAME  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     :` + name;
+      document.getElementById('dob1').innerHTML="DOB  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:"+ dob;
+      var Sex;
+      if(sex==1){
+         Sex="male";
+      }
+      else Sex="female";
+      document.getElementById('sex1').innerHTML="SEX &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:"+ Sex;
+      document.getElementById('mobile1').innerHTML="MOBILE NUMBER   "+" :" + num;
+
+ 	}
+   
+   function reset(){
+      // document.getElementById('name1').innerHTML="";
+      // document.getElementById('dob1').innerHTML="";
+      // document.getElementById('sex1').innerHTML="";
+      // document.getElementById('mobile1').innerHTML="";
+      // document.getElementById('username').innerHTML="";
+      // document.getElementById('dob').innerHTML="";
+      // document.getElementById('sex').innerHTML="";
+      // document.getElementById('mobilenum').innerHTML="";
+      document.location.reload();
+   } 
+
+ </script>
+ 
+</body>
+</html>
