@@ -1,0 +1,36 @@
+*{
+    font-family: serif;
+}
+.card{
+  margin: 15px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 200px;
+  height: 200px;
+}
+img{
+    width: 200px;    
+}
+.desc{
+    text-align: center;
+}
+.card:hover{
+    border: 1px solid black;
+}
+header{
+    text-align: center;
+    font-size: large;
+}
+#container{
+    width : 90%;
+    height: 230px;
+    border: 1px solid black;
+}
+#img{
+    float: left;
+    margin-top: 50px;
+}
+#innerContainer{
+    float: left;
+    margin-left: 20px;
+}
