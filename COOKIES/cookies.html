@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>GET VISITED TIME </title>
+  </head>
+
+  <script>
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let ca = document.cookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+function checkCookie() {
+ 
+}
+
+
+function getVisitedTime() {
+  let visitTime= getCookie("visitedTime");
+  if (visitTime != "") {
+   visitTime++;
+   document.cookie="visitedTime="+visitTime;
+  } else {
+      visitTime=1;
+      document.cookie="visitedTime=1";
+  }
+    document.getElementById('value').innerHTML=visitTime;
+    }
+
+  </script>
+<body onload="getVisitedTime()">
+
+<h1> VISITED TIME = <span id="value"></span> TIMES</h1>
+
+</body>
+</html>
