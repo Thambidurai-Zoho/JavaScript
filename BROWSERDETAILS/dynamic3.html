@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Browser Information</title>
+    <style>
+        #tbl{
+            border-collapse: collapse;
+            margin-left: 569px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1 align="center" style="margin-top: 50px;">Browser Details </h1>
+
+    <table id="tbl">
+        <thead>
+            <th><h3>PROPERTY</h3></th>
+            <th><h3>VALUE</h3></th>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" > </script>
+<script>
+     var browserName;
+     var userAgent = navigator.userAgent;
+          if(userAgent.match(/firefox|fxios/i)){
+             browserName = "firefox";
+           } 
+           else if(userAgent.match(/opr\//i)){
+             browserName = "opera";
+           } else if(userAgent.match(/edg/i)){
+             browserName = "edge";
+           }
+           else if(userAgent.match(/chrome|chromium|crios/i)){
+             browserName = "chrome";
+           } else if(userAgent.match(/safari/i)){
+             browserName = "safari";
+           }else{
+             browserName="No browser detection";
+           }
+      
+    let brand = navigator.userAgentData.brands;
+    // console.log(brand);
+    let browser = {
+        name : browserName,
+        version : brand[brand.length-1].version,
+        width : screen.width,
+        height : screen.height
+    };
+
+    const tableBody = $("table tbody");
+
+    for (let property in browser) {
+        let value = browser[property];
+        let markup = "<tr><td>" + property + "</td><td>" + value + "</td></tr>";
+        tableBody.append(markup.toUpperCase());        
+    } 
+
+</script>
+</html>
