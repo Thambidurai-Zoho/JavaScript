@@ -3,24 +3,25 @@
 
 <head>
 <title>
-sprite image to create separate images
+How to crop image
+using canvas?
 </title>
 </head>
 
 <body>
 
-<h2>Source Image</h2>
+<h2 align="center">Source Image</h2>
 <img id="myImage" src=
 "https://image.pngaaa.com/674/3013674-middle.png"
-alt="GeeksForGeeks">
+alt="GeeksForGeeks" style='margin-left: 450px;'>
         <h3 align="center">Enter Your Row and Column values</h3>
     <p align="center">row : <input type="Number" id="row"> &nbsp; &nbsp; &nbsp; col :<input type="Number" id="col"></p>
-    <input type="submit" id="submitbtn" style="margin-left:400px;" onclick="crop()">
+    <input type="submit" id="submitbtn" style="margin-left:875px;" onclick="crop()">
 
 <h2 align="center">Cropped Image</h2>
 
 <canvas id="myCanvas" width="500" height="400"
-style=" margin-left:200px;">
+style=" margin-left:700px;">
 
 </canvas>
 
@@ -78,11 +79,16 @@ function crop() {
             }
             else sy=(row-1)+160;
            
+            var dx=0;
+            if(imgWidthCount!=1){
+               dx=-50;
+            }
+            else dx=50;
             //alert('No error');
             //alert(sWidth);
             //alert(sHeight);
             contex.drawImage(img, 40+sx, 50+sy,
-            sWidth, sHeight, 120, 30, 75*imgWidthCount, 53*imgHeightCount);
+            sWidth, sHeight, 120+dx, 30, 75*imgWidthCount, 53*imgHeightCount);
             }
 </script>
 </body>
