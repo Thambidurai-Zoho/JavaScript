@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>
+How to crop image
+using canvas?
+</title>
+</head>
+
+<body>
+
+<h2>Source Image</h2>
+<img id="myImage" src=
+"https://image.pngaaa.com/674/3013674-middle.png"
+alt="GeeksForGeeks">
+        <h3 align="center">Enter Your Row and Column values</h3>
+    <p align="center">row : <input type="Number" id="row"> &nbsp; &nbsp; &nbsp; col :<input type="Number" id="col"></p>
+    <input type="submit" id="submitbtn" style="margin-left:400px;" onclick="crop()">
+
+<h2 align="center">Cropped Image</h2>
+
+<canvas id="myCanvas" width="500" height="400"
+style=" margin-left:200px;">
+
+</canvas>
+
+<script>
+
+
+function crop() {
+       
+           
+            var canvas = document.getElementById("myCanvas");
+            var contex = canvas.getContext("2d");
+            var img = document.getElementById("myImage");
+            
+            contex.clearRect(0,0,500,400);
+            
+            var row = document.getElementById("row").value;
+            var col = document.getElementById("col").value;
+            
+            
+            if(row==""&&col==""){
+              alert('Enter valid input');
+              return false;
+            }
+           
+            if(row!="")
+            if(row>2 || row <=0){
+               alert("Enter the valid row input");
+               return false;
+            }
+            //alert(col);
+            if(col!="")
+            if(col<=0 || col > 5 ){
+               alert('Enter the valid col input');
+               return false;
+            }
+
+           
+            var sWidth=120,sHeight=140,imgHeightCount=1,imgWidthCount=1,sx=0;
+            if(col==""){
+              sWidth=5*120;
+              sHeight+=0;
+              imgWidthCount=5;
+              sx+=120;
+            }
+            if(row==""){
+               sHeight=2*140;
+               imgHeightCount=2;
+               sx+=col*120;
+            }
+            else sx+=col*120;
+            var sy=0;
+            if(row!="")
+            if(row==1){
+              sy=0;
+            }
+            else sy=(row-1)+160;
+           
+            //alert('No error');
+            //alert(sWidth);
+            //alert(sHeight);
+            contex.drawImage(img, 40+sx, 50+sy,
+            sWidth, sHeight, 120, 30, 75*imgWidthCount, 53*imgHeightCount);
+            }
+</script>
+</body>
+
+</html>
