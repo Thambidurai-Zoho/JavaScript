@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>
+create a gif using javascript
+</title>
+</head>
+
+<body onload="createGif()">
+
+<h2 align="center">CREATE GIF USING CANVAS</h2>
+<!-- <img id="myImage" src=
+"https://img.favpng.com/15/25/21/sprite-computer-graphics-palette-desktop-wallpaper-deviantart-png-favpng-9Biw1eHKvgaTwz9Q47C7L9fY8.jpg"
+alt="GifSourceImage" style='margin-left: 500px;'> -->
+
+
+<canvas id="myCanvas" width="500" height="400"
+style=" margin-left:725px;">
+
+</canvas>
+
+<script>
+
+var sx=10,sy=0,imgCount=0,row=0;
+function createGif() {
+       
+           
+            setInterval(function(){
+            var canvas = document.getElementById("myCanvas");
+            var contex = canvas.getContext("2d");
+            var img = new Image();
+            img.src="gif.jpg";
+            // var img = document.getElementById("myImage");
+
+            if(imgCount==6){
+                imgCount=0;
+                row++;
+                sy+=140;
+                sx=0;
+            }
+            if(row==6 && imgCount==4){
+                sx=0;sy=0;imgCount=0;row=0;
+            }
+            //contex.clearRect(0,0,500,400);
+            sx+=140;
+            imgCount++;
+            contex.drawImage(img, 10+sx, 10+sy,
+            100,120, 30, 30, 330, 300);
+            
+            },150);
+            }
+</script>
+</body>
+
+</html>
